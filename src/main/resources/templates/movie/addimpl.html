@@ -36,12 +36,11 @@ $(document).ready(function() {
                   <div class="card card-dark-blue" >
                     <div class="card-body">
                       <p>등록이 완료되었습니다</p>
-                      <p class="fs-30 mb-2" th:text="${cust.id}+' 등록'">61344</p>
-                      <p th:text="${cust.name}+'님'">22.00% (30 days)</p>
+                      <p class="fs-30 mb-2" th:text="${movie.title}+' 등록'">61344</p>
                     </div>
                   </div>
                 </div>
-                <a th:href="@{/cust/list}" style="display:none;" id="button" class="btn btn-outline-secondary btn-lg btn-block">고객 목록 보기</a>
+                <a th:href="@{/movie/list}" style="display:none;" id="button" class="btn btn-outline-secondary btn-lg btn-block">영화 목록 보기</a>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->

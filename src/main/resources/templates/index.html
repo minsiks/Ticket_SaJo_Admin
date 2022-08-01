@@ -319,8 +319,21 @@
             </a>
             <div class="collapse" id="cust">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/cust/add"> 등록 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/cust"> 고객 목록 </a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/cust/add}"> 고객 등록 </a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/cust/list}"> 고객 목록 </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#movie" aria-expanded="false" aria-controls="moive">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">영화</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="movie">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" th:href="@{/movie/add}"> 영화 등록 </a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/movie/list}"> 영화 목록 </a></li>
               </ul>
             </div>
           </li>

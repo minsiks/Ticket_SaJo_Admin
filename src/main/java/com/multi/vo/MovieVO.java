@@ -3,6 +3,8 @@ package com.multi.vo;
 import java.sql.Time;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ public class MovieVO {
 	private String title;
 	private String director;
 	private String mainactor;
-	private Date releasedate;
+	private String releasedate;
 	private String posterimg1;
 	private String posterimg2;
 	private String country;
@@ -36,7 +38,10 @@ public class MovieVO {
 	private Time starttime;
 	private Time endtime;
 	
-	public MovieVO(int gid, String title, String director, String mainactor, Date releasedate, String posterimg1,
+	private MultipartFile mf1;
+	private MultipartFile mf2;
+	
+	public MovieVO(int gid, String title, String director, String mainactor, String releasedate, String posterimg1,
 			String posterimg2, String country, String runningtime, String text) {
 		this.gid = gid;
 		this.title = title;
@@ -51,7 +56,7 @@ public class MovieVO {
 	}
 
 
-	public MovieVO(int id, int gid, String title, String director, String mainactor, Date releasedate,
+	public MovieVO(int id, int gid, String title, String director, String mainactor, String releasedate,
 			String posterimg1, String posterimg2, String country, String runningtime, String text) {
 		this.id = id;
 		this.gid = gid;
