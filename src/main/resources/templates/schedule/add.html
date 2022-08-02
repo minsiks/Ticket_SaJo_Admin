@@ -44,15 +44,15 @@ function inputYMDNumber(obj) {
 		$('#btn').click(function(){
 			 
 			var datatimeRegexp = /[0-9]{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])/;
-			 if ( !datatimeRegexp.test($('#exampleInputReleasedate').val()) ) {
+			 if ( !datatimeRegexp.test($('#exampleInputBirth').val()) ) {
 			        alert("날짜를 다시 입력해주세요.");
 			        return false;
 			 }
-			 $('.movie').attr({
+			 $('.schedule').attr({
 					'method':'post',
-					'action':'/movie/addimpl'
+					'action':'/schedule/adddetail'
 				});
-				$('.movie').submit();
+				$('.schedule').submit();
 		});
 		 
 	});
@@ -68,69 +68,30 @@ function inputYMDNumber(obj) {
             <div style="margin:auto;"class="col-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">새로운 상영 영화 등록</h4>
+                  <h4 class="card-title">새로운 스케줄 등록</h4>
                   <p class="card-description">
-                    영화 정보 및 포스터를 추가해 주세요.
+                    1. 상영관과 상영 영화, 날짜를 선택해 주세요. (다음 버튼을 누르면 상세 스케줄 페이지로 이동합니다)
                   </p>
-                  <form class="movie" enctype="multipart/form-data">
+                  <form class="schedule">
                     <div class="form-group">
-                      <label for="exampleSelectGenre">장르</label>
-                        <select name="gid" class="form-control" id="exampleSelectGenre">
-                          <option th:each="g:${glist}"
-                          th:if="${g.tid != 0}" th:value="${g.id}" th:text="${g.name}"
-                          >man</option>
+                    <label for="exampleSelectGender">상영관 선택</label>
+                        <select name="tid" class="form-control" id="exampleSelectGender">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
                         </select>
                       </div>
-                    <div class="form-group">
-                      <label for="exampleInputTitle">제목</label>
-                      <input type="text" class="form-control" name="title" id="exampleInputTitle" placeholder="Title">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputDirector">감독</label>
-                      <input type="text" class="form-control" name="director" id="exampleInputDirector" placeholder="Director">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputMainactor">주연 배우</label>
-                      <input type="text" class="form-control" name="mainactor" id="exampleInputMainactor" placeholder="Mainactor">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputReleasedate">개봉연월일</label>
-                      <input type="text" onKeyup="inputYMDNumber(this);" maxlength="10" class="form-control" name="releasedate" id="exampleInputReleasedate" placeholder="yyyy-mm-dd">
-                    </div>
-                    <div class="form-group">
-                      <label>포스터 1</label>
-                      <input type="file" name="mf1" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" name="posterimg1" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
+                      <div class="form-group">
+                      <label for="exampleSelectGender">상영영화 선택</label>
+                        <select name="mid" class="form-control form-control-item" >
+		               		<option th:each="m:${mlist}" th:value="${m.id}" th:text="${m.title}"></option>
+		               </select>
                       </div>
-                    </div>
                     <div class="form-group">
-                      <label>포스터 2</label>
-                      <input type="file"  name="mf2" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" name="posterimg2" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
+                      <label for="exampleInputBirth">상영날짜   (숫자 8자리 입력)</label>
+                      <input type="text" onKeyup="inputYMDNumber(this);" maxlength="10" class="form-control" name="sdate" id="exampleInputBirth" placeholder="yyyy-mm-dd">
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputCountry">국가</label>
-                      <input type="text" class="form-control" name="country" id="exampleInputCountry" placeholder="Country">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputRunningtime">러닝타임 (형식/___m)</label>
-                      <input type="text" class="form-control" name="runningtime" id="exampleInputRunningtime" placeholder="___m">
-                    </div>
-                    <div class="form-group">
-                    	<label>줄거리</label>
-                      <textarea rows="6" class="form-control"  name="text" id="exampleInputPoint" placeholder="Text"></textarea>
-                    </div> 
-                    
-                    <button id="btn" type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button id="btn" type="submit" class="btn btn-primary mr-2">다음</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>

@@ -12,6 +12,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="schedulesVO">
 		SELECT s.id,s.tid,s.sdate,s.mid,m.title,m.posterimg1,m.posterimg2,m.runningtime FROM schedules s
 		INNER JOIN movie m ON s.mid = m.id 
+		ORDER BY id
+	</select>
+	<select id="selectallpage" parameterType="Integer" resultType="schedulesVO">
+		SELECT s.id,s.tid,s.sdate,s.mid,m.title,m.posterimg1,m.posterimg2,m.runningtime FROM schedules s
+		INNER JOIN movie m ON s.mid = m.id 
+		ORDER BY id
+		LIMIT #{mnum},10
 	</select>
 	<select id="selectmiddate" resultType="schedulesVO">
 		SELECT s.id,s.tid,s.sdate,s.mid,m.title,m.posterimg1,m.posterimg2,m.runningtime FROM schedules s
@@ -26,7 +33,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="schedulesVO">
-		INSERT INTO schedules VALUES (NULL,#{tid},#{mid},#{sdate})
+ 		INSERT INTO schedules (id,tid,mid,sdate)
+		VALUES (null,#{tid},#{mid},#{sdate})
+		<selectKey keyProperty="id" resultType="Integer">
+	    SELECT LAST_INSERT_ID()
+	  </selectKey>
 	</insert>
 	<update id="update" parameterType="schedulesVO">
 		UPDATE schedules SET tid=#{tid},mid=#{mid},sdate=#{sdate} WHERE id=#{id}

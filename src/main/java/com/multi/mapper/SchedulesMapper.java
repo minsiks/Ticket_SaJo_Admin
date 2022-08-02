@@ -20,6 +20,6 @@ public interface SchedulesMapper {
 	public List<SchedulesVO> selectmiddate(Integer mid,String sdate) throws Exception;
 	public List<SchedulesVO> selectmovieonschedules() throws Exception;
 	public List<SchedulesVO> movielistschedule(Integer mid,String sdate) throws Exception;
-
+	public List<SchedulesVO> selectallpage(Integer mnum) throws Exception;
 }
 

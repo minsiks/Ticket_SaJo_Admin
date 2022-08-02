@@ -49,4 +49,7 @@ public class SchedulesBiz implements Biz<Integer,SchedulesVO> {
 	public List<SchedulesVO> movielistschedule(Integer mid, String sdate) throws Exception {
 		return dao.movielistschedule(mid, sdate);
 	}
+	public List<SchedulesVO> selectallpage(Integer mnum) throws Exception {
+		return dao.selectallpage(mnum);
+	}
 }
