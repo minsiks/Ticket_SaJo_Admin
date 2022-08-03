@@ -1,6 +1,5 @@
 package com.multi.vo;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +14,8 @@ import lombok.ToString;
 public class CouponVO {
 	private int id;
 	private String name;
-	private Date sdate;
-	private Date edate;
+	private String sdate;
+	private String edate;
 	private String icon;
 	private int sale;
 	private String text;

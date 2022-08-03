@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.biz.CustBiz;
+import com.multi.biz.MycouponBiz;
 import com.multi.vo.CustVO;
+import com.multi.vo.MycouponVO;
 
 @Controller
 @RequestMapping("/cust")
@@ -16,6 +18,8 @@ public class CustController {
 
 	@Autowired
 	CustBiz cbiz;
+	@Autowired
+	MycouponBiz mcbiz;
 	
 	@RequestMapping("/add")
 	public String add(Model m) {
@@ -77,5 +81,27 @@ public class CustController {
 			e.printStackTrace();
 		}
 		return "redirect:list";
+	}
+	@RequestMapping("/coupon")
+	public String coupon(Model m,String id) {
+		List<MycouponVO> mlist = null;
+		try {
+			mlist = mcbiz.selectuid(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		m.addAttribute("center", "cust/coupon");
+		m.addAttribute("mlist", mlist);
+		return "index";
+	}
+	@RequestMapping("/cpdelete")
+	public String cpdelete(Model m,Integer id,String uid) {
+		try {
+			mcbiz.remove(id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:coupon?id="+uid;
 	}
 }

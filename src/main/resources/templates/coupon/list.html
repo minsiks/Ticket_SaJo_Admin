@@ -8,7 +8,7 @@
   <div class="container-scroller">
     <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">스케줄 목록</h4>
+                  <h4 class="card-title">쿠폰 목록</h4>
                   <p class="card-description">
                     
                   </p>
@@ -17,55 +17,62 @@
                       <thead>
                         <tr>
                           <th>
-                           	상영 번호
+                           	아이디
                           </th>
                           <th>
-                            상영관
+                            쿠폰명
                           </th>
                           <th>
-                            영화
+                            쿠폰 적용 날짜
                           </th>
                           <th>
-                            상영날짜
+                            쿠폰 종료 날짜
                           </th>
                           <th>
-                            상세보기
+                            아이콘
                           </th>
+                          <th>
+                            할인금액
+                          </th>
+                          <th>
+                            쿠폰 내용
+                          </th>
+                          
                           <th>
                             수정/삭제
                           </th>
                         </tr>
                       </thead>
-                      <tbody th:each="s:${slist}">
+                      <tbody th:each="c:${clist}">
                         <tr>
-                          <td th:text="${s.id}">
+                          <td th:text="${c.id}">
                             1
                           </td>
-                          <td th:text="${s.tid}">
+                          <td th:text="${c.name}">
                             Herman Beck
                           </td>
-                          <td th:text="${s.title}">
+                          <td th:text="${c.sdate}">
                             $ 77.99
                           </td>
-                          <td th:text="${s.sdate}">
+                          <td th:text="${c.edate}">
                             $ 77.99
                           </td>
-                          <td>
-                            <a class="btn btn-inverse-info btn-fw" th:href="@{/schedule/detail(sid=${s.id})}">상세보기</a>
+                          <td th:text="${c.icon}">
+                            May 15, 2015
+                          </td>
+                          <td th:text="${c.sale}">
+                            May 15, 2015
+                          </td>
+                          <td th:text="${c.text}">
+                            May 15, 2015
                           </td>
                           <td>
-                            <a class="btn btn-inverse-warning btn-fw" th:href="@{/schedule/update(id=${s.id})}">수정/삭제</a>
+                            <a class="btn btn-inverse-warning btn-fw" th:href="@{/coupon/detail(id=${c.id})}">수정/삭제</a>
                           </td>
                         </tr>
                        
                       </tbody>
                     </table>
-                    <div class="coloum-wrapper">
-                    <div class="pagination paginatioon--full">
-                            <a href='#' class="pagination__prev" th:if="${mnum}-1>=0" th:href="@{/schedule/list(mnum=${mnum}-10)}">이전</a>
-                            <a style="text-align: right; margin-left:90%;" href='#' class="pagination__next" th:href="@{/schedule/list(mnum=${mnum}+10)}">다음</a>
-                    </div>
-                </div>
                   </div>
                 </div>
               </div>

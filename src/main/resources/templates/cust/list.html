@@ -32,6 +32,9 @@
                             성별
                           </th>
                           <th>
+                            쿠폰 목록
+                          </th>
+                          <th>
                             수정/삭제
                           </th>
                         </tr>
@@ -52,6 +55,9 @@
                           </td>
                           <td th:text="${c.sex}">
                             May 15, 2015
+                          </td>
+                          <td>
+                            <a class="btn btn-inverse-info btn-fw" th:href="@{/cust/coupon(id=${c.id})}">쿠폰함</a>
                           </td>
                           <td>
                             <a class="btn btn-inverse-warning btn-fw" th:href="@{/cust/detail(id=${c.id})}">수정/삭제</a>

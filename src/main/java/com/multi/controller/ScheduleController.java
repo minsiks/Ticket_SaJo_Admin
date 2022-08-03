@@ -105,5 +105,111 @@ public class ScheduleController {
 		m.addAttribute("center", "schedule/list");
 		return "index";
 	}
-	
+	@RequestMapping("/detail")
+	public String detail(Model m, Integer sid) {
+		List<Detail_SchedulesVO> dlist = null;
+		Integer id1 = 0;
+		Integer id2 = 0;
+		Integer id3 = 0;
+		
+		System.out.println(sid);
+			try {
+				dlist = dsbiz.selectsid(sid);
+				for (Detail_SchedulesVO detail_SchedulesVO : dlist) {
+					if (detail_SchedulesVO.getMcnt()==1) {
+						id1 = 1;
+					}
+					if (detail_SchedulesVO.getMcnt()==2) {
+						id2 = 1;
+					}
+					if (detail_SchedulesVO.getMcnt()==3) {
+						id3 = 1;
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		m.addAttribute("center", "schedule/detail");
+		m.addAttribute("dlist", dlist);
+		m.addAttribute("id1", id1);
+		m.addAttribute("id2", id2);
+		m.addAttribute("id3", id3);
+		m.addAttribute("sid", sid);
+
+		return "index";
+	}
+	@RequestMapping("updatedetailimpl")
+	public String updatedetailimpl(Model m, @RequestParam List<String> check, Integer id) {
+		Detail_SchedulesVO ds1 = new Detail_SchedulesVO(id, 1,"13:00:00" , "15:00:00");
+		Detail_SchedulesVO ds2 = new Detail_SchedulesVO(id, 2,"16:00:00" , "18:00:00");
+		Detail_SchedulesVO ds3 = new Detail_SchedulesVO(id, 3,"19:00:00" , "21:00:00");
+		try {
+			dsbiz.remove(id);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		for (String string : check) {
+			if (string.equals("1")) {
+				try {
+					dsbiz.register(ds1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (string.equals("2")) {
+				try {
+					dsbiz.register(ds2);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (string.equals("3")) {
+				try {
+					dsbiz.register(ds3);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return "redirect:/schedule/list";
+	}
+	@RequestMapping("/update")
+	public String update(Model m, Integer id) {
+		SchedulesVO schedule = null;
+		List<SchedulesVO> slist = null;
+		List<MovieVO> mlist = null;
+		try {
+			schedule = sbiz.get(id);
+			slist = sbiz.get();
+			mlist = mbiz.get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		m.addAttribute("center", "schedule/update");
+		m.addAttribute("slist", slist);
+		m.addAttribute("mlist", mlist);
+		m.addAttribute("schedule", schedule);
+		m.addAttribute("id", id);
+		return "index";
+	}
+	@RequestMapping("/updateimpl")
+	public String updateimpl(Model m, SchedulesVO schedule) {
+		try {
+			sbiz.modify(schedule);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/schedule/list";
+	}
+	@RequestMapping("/delete")
+	public String delete(int id, Model m) {
+		try {
+			dsbiz.remove(id);
+			sbiz.remove(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:detail?id="+id;
+		}
+		return "redirect:/schedule/list";
+	}
 }

@@ -13,10 +13,10 @@ import com.multi.vo.ReservationVO;
 @Mapper
 public interface CouponMapper {
 	public void insert(CouponVO obj) throws Exception;
-	public void delete(String id) throws Exception;
+	public void delete(Integer id) throws Exception;
 	public void update(CouponVO  obj) throws Exception;
 	
-	public CouponVO  select(String id) throws Exception;
+	public CouponVO  select(Integer id) throws Exception;
 	public List<CouponVO> selectall() throws Exception;
 	
 	// 0722 안원영 추가 - 쿠폰 정렬
